@@ -8,7 +8,7 @@ class GlobalMethods{
         return array(
             "status"=>$status,
             "payload"=>$data,
-            "prepared_by"=>"RED",
+            "prepared_by"=>"Admin",
             "timestamp"=>date_create()
         );
     }

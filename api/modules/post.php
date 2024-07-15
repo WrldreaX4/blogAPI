@@ -15,15 +15,14 @@
                     'message' => 'Email, username, and password are required.'
                 ];
             }
-    
-            $email = $data['email'];
             $username = $data['username'];
+            $email = $data['email'];
             $password = $data['password'];
     
             $query = "SELECT * FROM users WHERE email = :email OR username = :username LIMIT 1";
             $stmt = $this->pdo->prepare($query);
-            $stmt->bindParam(':email', $email);
             $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':email', $email);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
@@ -36,10 +35,10 @@
     
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     
-            $query = "INSERT INTO users (email, username, password) VALUES (:email, :username, :password)";
+            $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
             $stmt = $this->pdo->prepare($query);
-            $stmt->bindParam(':email', $email);
             $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $hashedPassword);
     
             if ($stmt->execute()) {
