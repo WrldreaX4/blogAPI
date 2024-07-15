@@ -75,7 +75,7 @@
                 error_log("User found: " . print_r($user, true));
     
                 if (password_verify($password, $user['password'])) {
-                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['userId'] = $user['id'];
                     return [
                         'status' => 'success',
                         'message' => 'Login successful.'
